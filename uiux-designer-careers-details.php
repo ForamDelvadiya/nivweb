@@ -148,6 +148,10 @@
             return this.optional(element) || /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(value);
             }, "Please enter a valid Gmail address.");
 
+            $.validator.addMethod("fileValidation", function(value, element) {
+            return this.optional(element) || /\.(pdf|doc)$/i.test(value);
+            }, "Please enter a valid File.");
+
 
             $("#career-detail").validate({
                 rules: {
@@ -167,7 +171,8 @@
                         phoneValidation: true 
                     },
                     'resume': {
-                    required: true,
+                        required: true,
+                        fileValidation: true
                     } 
                 }
             });

@@ -139,16 +139,17 @@
         <script>
 
             $.validator.addMethod("phoneValidation", function(value, element) {
-            // Regular expression for phone number validation
             return this.optional(element) || /^[+]?[0-9\s\-()]{10,13}$/.test(value);
             }, "Please enter a valid phone number (10-13 digits, optional +, spaces, dashes, or parentheses).");
 
             $.validator.addMethod("gmailValidation", function(value, element) {
-            // Check if the email ends with @gmail.com
             return this.optional(element) || /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(value);
             }, "Please enter a valid Gmail address.");
 
-
+            $.validator.addMethod("fileValidation", function(value, element) {
+            return this.optional(element) || /\.(pdf|doc)$/i.test(value);
+            }, "Please enter a valid File.");
+            
             $("#career-detail").validate({
                 rules: {
                     'fname': {
@@ -168,6 +169,7 @@
                     },
                     'resume': {
                         required: true,
+                        fileValidation: true
                     } 
                 }
             });

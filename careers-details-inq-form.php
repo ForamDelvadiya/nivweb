@@ -38,6 +38,13 @@
                                 </div>
                             </div>
 
+                            <div class="form-group mt-3">
+                                <div class="g-recaptcha" data-sitekey="your-site-key"></div>
+                                    <input type="hidden" id="g-recaptcha-response" name="g-recaptcha-response">
+                                    <input type="hidden" name="action" value="validate_captcha">
+                                </div>
+                            </div>
+
                             <div class="form-group">
                                 <div class="discussProject">
                                     <button class="border-gradient" type="submit" type="submit" name="submit">
@@ -48,6 +55,6 @@
                         </div>
                     </div>
             </form>
-        </div> 
+                    </div> 
     </div>
 </div> 

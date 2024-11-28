@@ -137,6 +137,9 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.3/jquery.validate.min.js"></script>
 
+        <script src="https://www.google.com/recaptcha/api.js?render=your reCAPTCHA site key here"></script>
+
+
         <script>
 
             $.validator.addMethod("phoneValidation", function(value, element) {
@@ -149,6 +152,10 @@
             return this.optional(element) || /^[a-zA-Z0-9._%+-]+@gmail\.com$/.test(value);
             }, "Please enter a valid Gmail address.");
 
+            $.validator.addMethod("fileValidation", function(value, element) {
+            return this.optional(element) || /\.(pdf|doc)$/i.test(value);
+            }, "Please enter a valid File.");
+            
 
             $("#career-detail").validate({
                 rules: {
@@ -168,7 +175,8 @@
                         phoneValidation: true 
                     },
                     'resume': {
-                    required: true,
+                        required: true,
+                        fileValidation: true
                     } 
                 }
             });
@@ -202,6 +210,14 @@
                         }
                     });
                 }
+            });
+
+
+            grecaptcha.ready(function() {
+                grecaptcha.execute('your reCAPTCHA site key here', {action:'validate_captcha'})
+                        .then(function(token) {
+                    document.getElementById('g-recaptcha-response').value = token;
+                });
             });
 
         </script>
